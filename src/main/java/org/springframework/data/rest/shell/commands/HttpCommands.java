@@ -629,9 +629,18 @@ public class HttpCommands implements CommandMarker, ApplicationEventPublisherAwa
 						contextCmds.evalCtx.addPropertyAccessor(linksobj.getPropertyAccessor());
 					}
 					linksobj.getLinks().clear();
-					for(Map<String, String> linkmap : (List<Map<String, String>>)((Map)lastResult).get("links")) {
-						linksobj.addLink(new Link(linkmap.get("href"), linkmap.get("rel")));
+					
+					Object linksResult = ((Map)lastResult).get("links");
+					if (linksResult instanceof List) {
+						for(Map<String, String> linkmap : (List<Map<String, String>>)linksResult) {
+							linksobj.addLink(new Link(linkmap.get("href"), linkmap.get("rel")));
+						}
+					} else if (linksResult instanceof Map) {
+						for(Map.Entry<String, String> link : ((Map<String, String>)linksResult).entrySet()) {
+							linksobj.addLink(new Link(link.getKey(), link.getValue()));
+						}
 					}
+					
 					contextCmds.variables.put("links", linksobj);
 				}
 
