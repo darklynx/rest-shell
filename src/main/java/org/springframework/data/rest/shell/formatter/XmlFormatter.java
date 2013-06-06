@@ -2,6 +2,7 @@ package org.springframework.data.rest.shell.formatter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.xml.sax.InputSource;
 
 public class XmlFormatter extends FormatterSupport {
   private final List<String> supportedContentTypes = Arrays.asList("xml");
+  private final Charset utf8                       = Charset.forName("UTF-8");
 
   @Override
   public Collection<String> getSupportedList() {
@@ -29,7 +31,7 @@ public class XmlFormatter extends FormatterSupport {
       serializer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
       serializer.setOutputProperty(OutputKeys.INDENT, "yes");
       serializer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
-      Source xmlSource = new SAXSource(new InputSource(new ByteArrayInputStream(nonFormattedString.getBytes())));
+      Source xmlSource = new SAXSource(new InputSource(new ByteArrayInputStream(nonFormattedString.getBytes(utf8))));
       StreamResult res = new StreamResult(new ByteArrayOutputStream());
 
       serializer.transform(xmlSource, res);

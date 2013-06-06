@@ -1,6 +1,7 @@
 package org.springframework.data.rest.shell.formatter;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -16,6 +17,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 public class JsonFormatter extends FormatterSupport {
 
   private static final List<String> SUPPORTED = Arrays.asList("json");
+  private final        Charset utf8           = Charset.forName("UTF-8");
   private final        ObjectMapper mapper    = new ObjectMapper();
 
   {
@@ -30,9 +32,9 @@ public class JsonFormatter extends FormatterSupport {
     Object obj;
     try {
       if(nonFormattedString.startsWith("[")) {
-        obj = mapper.readValue(nonFormattedString.getBytes(), List.class);
+        obj = mapper.readValue(nonFormattedString.getBytes(utf8), List.class);
       } else {
-        obj = mapper.readValue(nonFormattedString.getBytes(), Map.class);
+        obj = mapper.readValue(nonFormattedString.getBytes(utf8), Map.class);
       }
       return mapper.writeValueAsString(obj);
     } catch(IOException e) {

@@ -590,7 +590,7 @@ public class HttpCommands implements CommandMarker, ApplicationEventPublisherAwa
 			}
 			if(null != body) {
 				if(body instanceof String) {
-					request.getBody().write(((String)body).getBytes());
+					request.getBody().write(((String)body).getBytes(utf8));
 				} else if(body instanceof byte[]) {
 					request.getBody().write((byte[])body);
 				} else {
