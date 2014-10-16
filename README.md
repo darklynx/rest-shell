@@ -8,7 +8,7 @@ Using Homebrew:
 
 Download the binary .tar.gz package:
 
-[https://github.com/SpringSource/rest-shell/downloads](https://github.com/SpringSource/rest-shell/downloads)
+[https://github.com/spring-projects/rest-shell/downloads](https://github.com/spring-projects/rest-shell/downloads)
 
 		tar -zxvf rest-shell-1.2.0.RELEASE.tar.gz
 		cd rest-shell-1.2.0.RELEASE
@@ -16,7 +16,7 @@ Download the binary .tar.gz package:
 
 # Building and Running
 
-		git clone git://github.com/SpringSource/rest-shell.git
+		git clone git://github.com/spring-projects/rest-shell.git
 		cd rest-shell
 		./gradlew installApp
 		cd build/install/rest-shell-1.2.0.RELEASE
@@ -212,7 +212,7 @@ If you generate a self-signed certificate for your server, by default the rest-s
 
 ### HTTP Basic authentication
 
-There is also a convenience command for setting an HTTP Basic authentication header. Use `auth basic --username user --pasword passwd` to set a username and password to base64 encode and place into the Authorization header that will be part of the current session's headers.
+There is also a convenience command for setting an HTTP Basic authentication header. Use `auth basic --username user --password passwd` to set a username and password to base64 encode and place into the Authorization header that will be part of the current session's headers.
 
 You can clear the authentication by using the `auth clear` command or by removing the Authorization header using the `headers clear` command.
 
