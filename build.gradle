@@ -40,8 +40,8 @@ configurations {
   compile.extendsFrom providedCompile
 }
 [compileJava, compileTestJava]*.options*.compilerArgs = ["-Xlint:none"]
-project.sourceCompatibility = 1.8
-project.targetCompatibility = 1.8
+project.sourceCompatibility = 1.7
+project.targetCompatibility = 1.7
 
 // Repositories
 repositories {
